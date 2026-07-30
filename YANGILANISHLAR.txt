@@ -28,3 +28,9 @@ YANGILANGAN QISMLAR
 - Aktiv nav element uchun kuchli glow/pulse effekt qo‘shildi.
 
 - Menyuda Manzil bo‘limi Savollar bo‘limidan keyinga ko‘chirildi.
+
+- PostgreSQL qo‘llab-quvvatlashi qo‘shildi.
+- DATABASE_URL bo‘lsa buyurtmalar PostgreSQL orders jadvaliga saqlanadi.
+- Jadval va indekslar avtomatik yaratiladi.
+- Eski orders.json ma’lumotlari bo‘sh bazaga avtomatik import qilinadi.
+- DATABASE_URL bo‘lmasa lokal ishlash uchun JSON fallback saqlab qolindi.

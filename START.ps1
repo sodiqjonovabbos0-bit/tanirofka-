@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $Root
-$ExpectedVersion = "2026.07-full-pro-6"
+$ExpectedVersion = "2026.07-postgresql-1"
 
 # WinRAR vaqtinchalik papkasidan ishga tushirilsa Desktop'ga avtomatik ko'chiradi.
 if ($Root -like '*\AppData\Local\Temp\Rar$*' -or $Root -like '*\AppData\Local\Temp\Rar*') {
@@ -22,6 +22,15 @@ if ($Root -like '*\AppData\Local\Temp\Rar$*' -or $Root -like '*\AppData\Local\Te
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
   Write-Host "Node.js topilmadi. Node.js 18 yoki yangiroq versiyasini o'rnating." -ForegroundColor Red
   exit 1
+}
+
+if (-not (Test-Path (Join-Path $Root 'node_modules\pg'))) {
+  Write-Host "Kerakli paketlar o'rnatilmoqda..." -ForegroundColor Yellow
+  npm install
+  if ($LASTEXITCODE -ne 0) {
+    Write-Host "npm install bajarilmadi." -ForegroundColor Red
+    exit 1
+  }
 }
 
 function Get-Health([int]$Port) {

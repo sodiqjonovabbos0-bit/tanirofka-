@@ -23,19 +23,17 @@ if (fs.existsSync(ENV_FILE)) {
   });
 }
 
-
+const storage = require('./storage');
 
 const PORT = Number(process.env.PORT || 3000);
 const HOST = process.env.HOST || '0.0.0.0';
 const PUBLIC_DIR = path.join(__dirname, 'public');
-const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
-const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Tanirovka2026!';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'change-this-session-secret-in-production';
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000;
 const MAX_BODY_SIZE = 100 * 1024;
-const APP_VERSION = '2026.07-full-pro-6';
+const APP_VERSION = '2026.07-postgresql-1';
 
 const STATUS_VALUES = new Set(['accepted', 'working', 'ready']);
 const SERVICE_VALUES = new Set(['tint', 'sun', 'lam', 'ppf', 'clean']);
@@ -55,9 +53,6 @@ const MIME_TYPES = {
   '.wav': 'audio/wav',
   '.ico': 'image/x-icon'
 };
-
-fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(ORDERS_FILE)) fs.writeFileSync(ORDERS_FILE, '[]\n', 'utf8');
 
 function sendJson(res, statusCode, data) {
   const body = JSON.stringify(data);
@@ -79,22 +74,6 @@ function sendText(res, statusCode, text) {
   res.end(text);
 }
 
-function readOrders() {
-  try {
-    const parsed = JSON.parse(fs.readFileSync(ORDERS_FILE, 'utf8'));
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.error('orders.json o‘qilmadi:', error);
-    return [];
-  }
-}
-
-function writeOrders(orders) {
-  const tempFile = `${ORDERS_FILE}.tmp`;
-  fs.writeFileSync(tempFile, `${JSON.stringify(orders, null, 2)}\n`, 'utf8');
-  fs.renameSync(tempFile, ORDERS_FILE);
-}
-
 function cleanText(value, maxLength = 200) {
   if (typeof value !== 'string') return '';
   return value.trim().replace(/[\u0000-\u001F\u007F]/g, '').slice(0, maxLength);
@@ -113,15 +92,6 @@ function publicOrder(order) {
     createdAt: order.createdAt,
     updatedAt: order.updatedAt
   };
-}
-
-function generateOrderCode(existingOrders) {
-  for (let attempt = 0; attempt < 20; attempt += 1) {
-    const value = crypto.randomInt(100000, 999999);
-    const code = `TR-${value}`;
-    if (!existingOrders.some((order) => order.code === code)) return code;
-  }
-  return `TR-${Date.now().toString().slice(-8)}`;
 }
 
 function readJsonBody(req) {
@@ -182,7 +152,8 @@ function isAdmin(req) {
 
 async function handleApi(req, res, url) {
   if (req.method === 'GET' && url.pathname === '/api/health') {
-    return sendJson(res, 200, { ok: true, service: 'tanirovka-api', version: APP_VERSION });
+    const database = await storage.health();
+    return sendJson(res, 200, { ok: true, service: 'tanirovka-api', version: APP_VERSION, database });
   }
 
   if (req.method === 'POST' && url.pathname === '/api/admin/login') {
@@ -217,10 +188,8 @@ async function handleApi(req, res, url) {
     if (!brand) return sendJson(res, 422, { ok: false, message: 'Avtomobil markasini tanlang.' });
     if (!SERVICE_VALUES.has(service)) return sendJson(res, 422, { ok: false, message: 'Xizmat turini tanlang.' });
 
-    const orders = readOrders();
     const now = new Date().toISOString();
-    const order = {
-      code: generateOrderCode(orders),
+    const order = await storage.createOrder({
       name,
       phone,
       phoneDisplay: cleanText(body.phone, 30),
@@ -234,10 +203,8 @@ async function handleApi(req, res, url) {
       status: 'accepted',
       createdAt: now,
       updatedAt: now
-    };
+    });
 
-    orders.unshift(order);
-    writeOrders(orders.slice(0, 5000));
     return sendJson(res, 201, { ok: true, order: publicOrder(order) });
   }
 
@@ -245,11 +212,7 @@ async function handleApi(req, res, url) {
     const query = cleanText(url.searchParams.get('q') || '', 50);
     if (!query) return sendJson(res, 400, { ok: false, message: 'Buyurtma kodi yoki telefon raqamini kiriting.' });
     const digits = normalizePhone(query);
-    const orders = readOrders();
-    const order = orders.find((item) =>
-      item.code.toLowerCase() === query.toLowerCase() ||
-      (digits.length >= 9 && String(item.phone).endsWith(digits.slice(-9)))
-    );
+    const order = await storage.findOrder(query, digits);
     if (!order) return sendJson(res, 404, { ok: false, message: 'Buyurtma topilmadi. Kod yoki telefon raqamini tekshiring.' });
     return sendJson(res, 200, { ok: true, order: publicOrder(order) });
   }
@@ -258,7 +221,7 @@ async function handleApi(req, res, url) {
     if (!isAdmin(req)) return sendJson(res, 401, { ok: false, message: 'Admin kaliti noto‘g‘ri.' });
 
     if (req.method === 'GET' && url.pathname === '/api/admin/orders') {
-      const orders = readOrders();
+      const orders = await storage.listOrders();
       return sendJson(res, 200, { ok: true, orders });
     }
 
@@ -270,12 +233,8 @@ async function handleApi(req, res, url) {
       const status = cleanText(body.status, 20);
       if (!STATUS_VALUES.has(status)) return sendJson(res, 422, { ok: false, message: 'Holat noto‘g‘ri.' });
       const code = decodeURIComponent(match[1]).toUpperCase();
-      const orders = readOrders();
-      const order = orders.find((item) => item.code.toUpperCase() === code);
+      const order = await storage.updateOrderStatus(code, status, new Date().toISOString());
       if (!order) return sendJson(res, 404, { ok: false, message: 'Buyurtma topilmadi.' });
-      order.status = status;
-      order.updatedAt = new Date().toISOString();
-      writeOrders(orders);
       return sendJson(res, 200, { ok: true, order });
     }
   }
@@ -338,8 +297,18 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, HOST, () => {
-  console.log(`TANIROVKA server: http://${HOST}:${PORT}`);
-  if (ADMIN_PASSWORD === 'Tanirovka2026!') console.warn('DIQQAT: ADMIN_PASSWORD ni productionda almashtiring.');
-  if (SESSION_SECRET === 'change-this-session-secret-in-production') console.warn('DIQQAT: SESSION_SECRET ni productionda almashtiring.');
-});
+async function startServer() {
+  try {
+    await storage.initStorage();
+    server.listen(PORT, HOST, () => {
+      console.log(`TANIROVKA server: http://${HOST}:${PORT}`);
+      if (ADMIN_PASSWORD === 'Tanirovka2026!') console.warn('DIQQAT: ADMIN_PASSWORD ni productionda almashtiring.');
+      if (SESSION_SECRET === 'change-this-session-secret-in-production') console.warn('DIQQAT: SESSION_SECRET ni productionda almashtiring.');
+    });
+  } catch (error) {
+    console.error('Ma’lumotlar bazasiga ulanishda xatolik:', error);
+    process.exit(1);
+  }
+}
+
+startServer();

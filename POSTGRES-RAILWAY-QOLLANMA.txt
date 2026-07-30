@@ -1,0 +1,31 @@
+TANIROVKA — RAILWAY POSTGRESQL ULASH
+
+1) Ushbu yangilangan fayllarni GitHub repositoryga push qiling.
+
+2) Railway loyiha canvasida:
+   + New → Database → PostgreSQL
+
+3) PostgreSQL service Online bo‘lgach, WEB service oching:
+   Variables → New Variable / Add Reference Variable
+
+   Variable nomi:
+   DATABASE_URL
+
+   Qiymati (Postgres service nomi "Postgres" bo‘lsa):
+   ${{Postgres.DATABASE_URL}}
+
+   Eng oson usul: Add Reference Variable tugmasidan Postgres → DATABASE_URL ni tanlash.
+
+4) Apply Changes / Deploy ni bosing.
+
+5) Deploy tugagach tekshiring:
+   https://SIZNING-DOMEN/api/health
+
+   Javob ichida quyidagisi chiqishi kerak:
+   "database":{"mode":"postgresql","connected":true}
+
+ESLATMA:
+- PostgreSQL ishlaganda DATA_DIR va /data Volume shart emas.
+- Jadval server ishga tushganda avtomatik yaratiladi.
+- Agar eski data/orders.json ichida buyurtmalar bo‘lsa va baza bo‘sh bo‘lsa,
+  ular birinchi ishga tushishda avtomatik PostgreSQLga ko‘chiriladi.
