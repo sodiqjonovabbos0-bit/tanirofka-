@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tanirovka-pwa-v18-mobile-layout-fix';
+const CACHE_NAME = 'tanirovka-pwa-v20-mobile-full-width';
 const APP_SHELL = [
   '/',
   '/index.html',

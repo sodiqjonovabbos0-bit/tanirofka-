@@ -1491,55 +1491,196 @@ main,.section,.container,.hero__grid,.service-list,.price-table,.guarantee-grid,
 }
 
 
-/* ===== FINAL MOBILE DRAWER GAP + PWA ICON CENTER FIX ===== */
-.pwa-install__icon{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  padding:0!important;
-  line-height:0!important;
-  text-align:center!important;
-  flex:0 0 auto!important;
-}
-.pwa-install__icon svg{
-  display:block!important;
-  width:17px!important;
-  height:17px!important;
-  margin:0!important;
-  fill:none!important;
-  stroke:currentColor!important;
-  stroke-width:2!important;
-  stroke-linecap:round!important;
-  stroke-linejoin:round!important;
-  transform:none!important;
-}
-
+/* ===== TELEFON MENYU ORALIQ + PWA DUMALOQ ICON FIX ===== */
 @media (max-width:767px){
-  /* Ranglar va telefon Admin ostida qoladi; o‘rtadagi katta bo‘shliq yo‘qoladi. */
-  .nav-drawer .drawer-tools{
-    margin-top:6px!important;
+  /* Menyu ichidagi katta bo‘shliqni olib tashlaydi; qolgan dizaynga tegmaydi. */
+  .nav-drawer,.nav-drawer.open{
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    justify-content:flex-start!important;
+  }
+  .drawer-tools{
+    margin-top:8px!important;
   }
 
-  /* Dumaloq o‘rnatish tugmasining tashqi va ichki markazi bir xil bo‘ladi. */
+  /* Telefonga o‘rnatish dumaloq tugmasi va ichidagi o‘qni aniq markazlaydi. */
   .pwa-install{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
+    display:grid!important;
+    place-items:center!important;
+    width:50px!important;
+    height:50px!important;
+    min-width:50px!important;
+    min-height:50px!important;
+    max-width:50px!important;
+    padding:0!important;
+    gap:0!important;
+    border-radius:50%!important;
+    line-height:0!important;
   }
   .pwa-install__icon{
-    width:28px!important;
-    height:28px!important;
-    min-width:28px!important;
-    min-height:28px!important;
+    position:relative!important;
+    display:block!important;
+    width:30px!important;
+    height:30px!important;
+    padding:0!important;
+    margin:0!important;
+    font-size:0!important;
+    line-height:0!important;
+    border-radius:50%!important;
+    transform:none!important;
   }
-  .pwa-install__icon svg{
-    width:16px!important;
-    height:16px!important;
+  .pwa-install__icon::before{
+    content:'↓';
+    position:absolute;
+    left:50%;
+    top:50%;
+    display:block;
+    margin:0;
+    padding:0;
+    color:#16120a;
+    font-family:Arial,sans-serif;
+    font-size:18px;
+    font-weight:900;
+    line-height:1;
+    transform:translate(-50%,-54%);
+  }
+}
+
+
+/* ===== MOBILE MENYU TO'LIQ EKRAN + BIR TEKIS YOZUVLAR ===== */
+@media (max-width:767px){
+  .nav-drawer,.nav-drawer.open{
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    bottom:0!important;
+    width:100vw!important;
+    max-width:100vw!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    margin:0!important;
+    padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom))!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+
+  .nav-drawer__head{
+    width:100%!important;
+    min-height:54px!important;
+    padding:2px 2px 10px!important;
+    box-sizing:border-box!important;
+  }
+  .nav-drawer__eyebrow{
+    font-size:8px!important;
+    line-height:1.15!important;
+  }
+  .nav-drawer__head strong{
+    font-size:21px!important;
+    line-height:1.1!important;
+  }
+
+  .nav-drawer .nav{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:5px!important;
+    margin:8px 0 10px!important;
+    box-sizing:border-box!important;
+  }
+  .nav-drawer .nav a,
+  .nav-drawer .nav .nav-admin{
+    width:100%!important;
+    max-width:none!important;
+    min-height:48px!important;
+    grid-template-columns:38px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:12px!important;
+    margin:0!important;
+    padding:6px 12px!important;
+    border:1px solid rgba(var(--accent-rgb),.16)!important;
+    border-radius:14px!important;
+    background:rgba(255,255,255,.018)!important;
+    box-sizing:border-box!important;
+    font-size:15px!important;
+    line-height:1.2!important;
+    transform:none!important;
+  }
+  .nav-drawer .nav a b{
+    display:flex!important;
+    align-items:center!important;
+    min-width:0!important;
+    height:100%!important;
+    margin:0!important;
+    padding:0!important;
+    color:inherit!important;
+    font-size:15px!important;
+    font-weight:850!important;
+    line-height:1.2!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+  }
+  .nav-drawer .nav .nav-icon{
+    width:36px!important;
+    height:36px!important;
+    min-width:36px!important;
+    min-height:36px!important;
+    margin:0!important;
+    border-radius:11px!important;
+  }
+  .nav-drawer .nav .nav-icon svg{
+    width:19px!important;
+    height:19px!important;
+  }
+  .nav-drawer .nav a:hover,
+  .nav-drawer .nav a.is-active{
+    width:100%!important;
+    transform:none!important;
+    border-color:rgba(var(--accent-rgb),.55)!important;
+    background:linear-gradient(90deg,rgba(var(--accent-rgb),.19),rgba(var(--accent-rgb),.045))!important;
+  }
+
+  .drawer-tools{
+    width:100%!important;
+    margin-top:auto!important;
+    box-sizing:border-box!important;
+  }
+  .drawer-tool,.drawer-call{
+    width:100%!important;
+    box-sizing:border-box!important;
   }
 }
 
 @media (max-width:767px) and (max-height:700px){
-  .nav-drawer .drawer-tools{
-    margin-top:3px!important;
+  .nav-drawer,.nav-drawer.open{
+    padding:max(9px,env(safe-area-inset-top)) 10px max(9px,env(safe-area-inset-bottom))!important;
   }
+  .nav-drawer__head{min-height:44px!important;padding-bottom:6px!important}
+  .nav-drawer__head strong{font-size:18px!important}
+  .nav-drawer .nav{gap:3px!important;margin:5px 0 6px!important}
+  .nav-drawer .nav a,
+  .nav-drawer .nav .nav-admin{
+    min-height:42px!important;
+    grid-template-columns:33px minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:4px 9px!important;
+    font-size:14px!important;
+  }
+  .nav-drawer .nav a b{font-size:14px!important}
+  .nav-drawer .nav .nav-icon{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important}
+  .nav-drawer .nav .nav-icon svg{width:17px!important;height:17px!important}
+  .drawer-tools{gap:5px!important;padding-top:6px!important}
+  .drawer-tool{padding:7px!important}
+  .drawer-call{min-height:38px!important;padding:7px 9px!important}
+}
+
+@media (max-width:360px){
+  .nav-drawer .nav a,
+  .nav-drawer .nav .nav-admin{
+    grid-template-columns:34px minmax(0,1fr)!important;
+    gap:10px!important;
+    font-size:14px!important;
+  }
+  .nav-drawer .nav a b{font-size:14px!important}
 }
