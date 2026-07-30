@@ -1,0 +1,27 @@
+TANIROVKA — NETLIFY + RAILWAY
+
+Tuzilishi:
+- Frontend va admin sahifa: Netlify
+- Backend va PostgreSQL: Railway
+- API proxy: /api/* -> https://web-production-70923.up.railway.app/api/*
+
+GitHub orqali Netlify deploy:
+1. Ushbu papkadagi netlify.toml va public/_redirects fayllarini GitHub loyihangizga qo'shing.
+2. git add .
+3. git commit -m "Netlify konfiguratsiya"
+4. git push origin main
+5. Netlify: Add new project -> Import an existing project -> GitHub.
+6. Repository: sodiqjonovabbos0-bit/tanirofka-
+7. Build command: netlify.toml avtomatik belgilaydi.
+8. Publish directory: public
+9. Deploy tugmasini bosing.
+
+MUHIM:
+- Railway web servisi va Postgres doim Online bo'lishi kerak.
+- Railway domeni o'zgarsa, netlify.toml va public/_redirects ichidagi URLni ham yangilang.
+- Netlify'da alohida PostgreSQL qo'shilmaydi.
+
+Tekshiruv:
+- Netlify sayt: https://SIZNING-SAYTINGIZ.netlify.app
+- Admin: https://SIZNING-SAYTINGIZ.netlify.app/admin.html
+- API health: https://SIZNING-SAYTINGIZ.netlify.app/api/health
