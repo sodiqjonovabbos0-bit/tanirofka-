@@ -34,3 +34,11 @@ YANGILANGAN QISMLAR
 - Jadval va indekslar avtomatik yaratiladi.
 - Eski orders.json ma’lumotlari bo‘sh bazaga avtomatik import qilinadi.
 - DATABASE_URL bo‘lmasa lokal ishlash uchun JSON fallback saqlab qolindi.
+
+- Mobil menyu bir ekranga to‘liq sig‘adigan qilindi.
+- Barcha nav bo‘limlari, rang tanlash va telefon tugmasi scrollsiz ko‘rinadi.
+- 320px va past bo‘yli ekranlar uchun alohida ixcham responsiv qoida qo‘shildi.
+
+- Barcha selectlar rangli custom dropdown va ochilish animatsiyasi bilan almashtirildi.
+- Input, textarea, checkbox va admin login maydonlariga hover/focus glow animatsiyalari qo‘shildi.
+- Native ko‘k select oynasi olib tashlandi.

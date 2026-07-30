@@ -308,3 +308,19 @@ body.admin-page{min-width:320px;max-width:100%;overflow-x:hidden!important}
   .admin-page .admin-session-actions{grid-template-columns:1fr!important}
   .admin-page .admin-session-actions .admin-btn:last-child{grid-column:auto!important}
 }
+
+
+/* Rangli animatsiyali admin login maydonlari */
+.login-card input{
+  border-color:rgba(var(--accent-rgb,255,105,105),.24)!important;
+  background:linear-gradient(135deg,rgba(var(--accent-rgb,255,105,105),.06),transparent 48%),rgba(8,10,14,.92)!important;
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background .25s ease!important;
+}
+.login-card input:hover{border-color:rgba(var(--accent-rgb,255,105,105),.48)!important;transform:translateY(-1px)}
+.login-card input:focus{
+  border-color:var(--accent,#ff6969)!important;
+  transform:translateY(-1px);
+  box-shadow:0 0 0 4px rgba(var(--accent-rgb,255,105,105),.11),0 0 28px rgba(var(--accent-rgb,255,105,105),.16)!important;
+  animation:adminInputPulse 1.8s ease-in-out infinite;
+}
+@keyframes adminInputPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.07)}}

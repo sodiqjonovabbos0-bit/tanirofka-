@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tanirovka-pwa-v15-nav-reorder';
+const CACHE_NAME = 'tanirovka-pwa-v18-form-animation';
 const APP_SHELL = [
   '/',
   '/index.html',

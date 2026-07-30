@@ -122,6 +122,8 @@ function applyLanguage(lang) {
     const content = item.querySelector('.accordion__content');
     content.style.maxHeight = `${content.scrollHeight}px`;
   });
+
+  requestAnimationFrame(() => refreshCustomSelects());
 }
 
 document.querySelectorAll('.lang-btn').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
@@ -274,6 +276,166 @@ window.addEventListener('resize', requestNavSectionUpdate);
 window.addEventListener('load', requestNavSectionUpdate);
 requestNavSectionUpdate();
 
+
+/* ============ CUSTOM RANGLI SELECTLAR ============ */
+const customSelectInstances = new Map();
+
+function closeCustomSelects(except = null) {
+  customSelectInstances.forEach((instance) => {
+    if (instance === except) return;
+    instance.wrapper.classList.remove('is-open');
+    instance.trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function buildCustomSelectOptions(instance) {
+  const { select, menu } = instance;
+  menu.innerHTML = '';
+
+  [...select.options].forEach((option, index) => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'custom-select__option';
+    item.dataset.value = option.value;
+    item.dataset.index = String(index);
+    item.setAttribute('role', 'option');
+    item.setAttribute('aria-selected', String(option.selected));
+    item.disabled = option.disabled;
+    item.innerHTML = `<span>${option.textContent}</span><i aria-hidden="true">✓</i>`;
+
+    if (!option.value) item.classList.add('is-placeholder');
+    if (option.selected) item.classList.add('is-selected');
+
+    item.addEventListener('click', () => {
+      if (option.disabled) return;
+      select.value = option.value;
+      select.dispatchEvent(new Event('input', { bubbles: true }));
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      syncCustomSelect(instance);
+      closeCustomSelects();
+      instance.trigger.focus({ preventScroll: true });
+    });
+
+    menu.appendChild(item);
+  });
+}
+
+function syncCustomSelect(instance) {
+  const { select, trigger, valueText, wrapper, menu } = instance;
+  const selected = select.options[select.selectedIndex] || select.options[0];
+  valueText.textContent = selected?.textContent || '';
+  wrapper.classList.toggle('has-value', Boolean(select.value));
+  wrapper.classList.toggle('is-disabled', select.disabled);
+  trigger.disabled = select.disabled;
+
+  [...menu.querySelectorAll('.custom-select__option')].forEach((item) => {
+    const active = item.dataset.value === select.value && Number(item.dataset.index) === select.selectedIndex;
+    item.classList.toggle('is-selected', active);
+    item.setAttribute('aria-selected', String(active));
+  });
+}
+
+function refreshCustomSelects() {
+  customSelectInstances.forEach((instance) => {
+    buildCustomSelectOptions(instance);
+    syncCustomSelect(instance);
+  });
+}
+
+function initCustomSelects(root = document) {
+  root.querySelectorAll('.field select:not([data-custom-select-ready])').forEach((select) => {
+    select.dataset.customSelectReady = 'true';
+    select.classList.add('native-select-hidden');
+    select.hidden = true;
+    select.tabIndex = -1;
+    select.setAttribute('aria-hidden', 'true');
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-select';
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'custom-select__trigger';
+    trigger.setAttribute('aria-haspopup', 'listbox');
+    trigger.setAttribute('aria-expanded', 'false');
+
+    const valueText = document.createElement('span');
+    valueText.className = 'custom-select__value';
+
+    const arrow = document.createElement('span');
+    arrow.className = 'custom-select__arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.innerHTML = '<i></i>';
+
+    const menu = document.createElement('div');
+    menu.className = 'custom-select__menu';
+    menu.setAttribute('role', 'listbox');
+    menu.tabIndex = -1;
+
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.append(select, trigger, menu);
+    trigger.append(valueText, arrow);
+
+    const instance = { select, wrapper, trigger, valueText, menu };
+    customSelectInstances.set(select, instance);
+
+    buildCustomSelectOptions(instance);
+    syncCustomSelect(instance);
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const opening = !wrapper.classList.contains('is-open');
+      closeCustomSelects(instance);
+      wrapper.classList.toggle('is-open', opening);
+      trigger.setAttribute('aria-expanded', String(opening));
+      if (opening) {
+        const rect = trigger.getBoundingClientRect();
+        const menuHeight = Math.min(menu.scrollHeight || 300, window.innerHeight * .46);
+        const spaceBelow = window.innerHeight - rect.bottom;
+        wrapper.classList.toggle('opens-up', spaceBelow < menuHeight + 18 && rect.top > spaceBelow);
+        const selectedItem = menu.querySelector('.is-selected:not(.is-placeholder)') || menu.querySelector('.custom-select__option');
+        selectedItem?.scrollIntoView({ block: 'nearest' });
+      } else {
+        wrapper.classList.remove('opens-up');
+      }
+    });
+
+    trigger.addEventListener('keydown', (event) => {
+      const items = [...menu.querySelectorAll('.custom-select__option:not(:disabled)')];
+      const currentIndex = Math.max(0, items.findIndex((item) => item.classList.contains('is-selected')));
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (!wrapper.classList.contains('is-open')) {
+          wrapper.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          return;
+        }
+        const direction = event.key === 'ArrowDown' ? 1 : -1;
+        const next = items[(currentIndex + direction + items.length) % items.length];
+        next?.focus();
+      }
+    });
+
+    select.addEventListener('change', () => syncCustomSelect(instance));
+
+    const observer = new MutationObserver(() => {
+      buildCustomSelectOptions(instance);
+      syncCustomSelect(instance);
+    });
+    observer.observe(select, { childList: true, subtree: true, characterData: true, attributes: true });
+  });
+}
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.custom-select')) closeCustomSelects();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeCustomSelects();
+});
+
+initCustomSelects();
+
 applyLanguage(currentLang);
 
 document.querySelectorAll('[data-phone-link]').forEach((link) => { link.href = `tel:${CONFIG.phoneHref}`; });
@@ -384,6 +546,7 @@ orderForm.addEventListener('submit', async (event) => {
     orderForm.reset();
     orderPhone.value = '+998 ';
     updateServiceOptions();
+    refreshCustomSelects();
   } catch (error) {
     showOrderMessage(error.message || tr('error.server'), 'error');
   } finally {
