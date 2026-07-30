@@ -1,0 +1,9 @@
+.env
+node_modules/
+data/*.tmp
+.DS_Store
+
+.env
+.server-port
+server.log
+node_modules/

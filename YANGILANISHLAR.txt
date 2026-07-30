@@ -1,0 +1,30 @@
+YANGILANGAN QISMLAR
+
+1. Admin sahifasi public saytdagi desktop sidebar qoidalaridan ajratildi.
+2. Admin panel desktop va mobil ekranlarda markazlashtirildi.
+3. Admin header, login kartasi va dashboard uchun xavfsiz chet masofalari berildi.
+4. Mobil admin logotipi qayta ko‘rinadigan qilindi.
+5. Mobil admin boshqaruv tugmalari tartibli va responsive qilindi.
+6. Navbar ichidagi 01–09 raqamlari olib tashlandi.
+7. Har bir navbar bo‘limiga alohida SVG icon qo‘yildi.
+8. Navbar iconlari hover va aktiv holat animatsiyasi bilan bezatildi.
+9. JavaScript fayllari sintaksis tekshiruvidan o‘tkazildi.
+- Kontakt kartasidagi Telefon, Telegram, Instagram, manzil, ish vaqti va xarita yozuvlari mos SVG ikonkalarga almashtirildi.
+
+- 2026-07-30: 'Xizmat davomiyligi / Har bir xizmat qancha vaqt oladi?' bo‘limi va menyudagi 'Vaqt' havolasi olib tashlandi.
+- Media/drawer fix: 1024-1179px diapazonda menyu endi doimiy emas, yopish (X) tugmasi ishlaydi.
+- Mobil va planshet menyu responsivi kuchaytirildi, X tugmasi touch uchun kattalashtirildi.
+
+- Menyu tugmasi barcha asosiy pxlarda ko'rinadigan qilindi.
+- 768px–1179px va mobil header overlap muammosi tuzatildi.
+- Orqada yozuv qolib ketishi va logo/menu ustma-ust chiqishi bartaraf etildi.
+- X yopish tugmasi responsiv holatda saqlandi.
+
+- Sayt va admin panel 320px dan ultra-wide monitorlargacha responsive qilindi.
+- 320/360/380/560/768/900/1179/1180/1600+ ekranlar uchun layout moslandi.
+- Menyu, header, kartalar, narxlar, xarita, forma va admin buyurtma kartalarida overflow tuzatildi.
+
+- Scroll bo‘yicha aktiv menyu qo‘shildi: foydalanuvchi qaysi bo‘limda bo‘lsa, shu menyu elementi yonib turadi.
+- Aktiv nav element uchun kuchli glow/pulse effekt qo‘shildi.
+
+- Menyuda Manzil bo‘limi Savollar bo‘limidan keyinga ko‘chirildi.

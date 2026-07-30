@@ -1,0 +1,310 @@
+.admin-page{min-height:100vh;background:var(--bg)}
+.admin-container{width:min(1180px,calc(100% - 32px));margin-inline:auto}
+.admin-header{position:sticky;top:0;z-index:20;background:rgba(11,13,16,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.admin-header__inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.admin-header__actions{display:flex;gap:8px;align-items:center}.admin-session-actions{display:flex;gap:8px;align-items:center}.admin-session-actions[hidden]{display:none!important}
+.admin-main{padding:52px 0 80px}
+.admin-login{max-width:600px;margin:5vh auto 0;padding:32px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow)}
+.admin-login h1,.admin-title-row h1{font-size:clamp(32px,5vw,56px);margin:8px 0 12px}
+.admin-login__form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.admin-login input,.admin-toolbar input,.admin-toolbar select,.order-card select{width:100%;min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#0f1318;color:var(--text)}
+.admin-login__field{display:grid;gap:7px;min-width:0}
+.admin-login__field>span:first-child{font-size:12px;font-weight:800;color:var(--muted)}
+.admin-password-wrap{position:relative;display:block;min-width:0}
+.admin-password-wrap input{padding-right:92px}
+.admin-password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);min-width:74px;height:34px;padding:0 11px;border:1px solid rgba(223,189,104,.34);border-radius:8px;background:rgba(223,189,104,.08);color:var(--gold);font:inherit;font-size:12px;font-weight:850;cursor:pointer;transition:.2s}
+.admin-password-toggle:hover,.admin-password-toggle:focus-visible{background:var(--gold);color:#201a0d;outline:none}
+.admin-login__actions-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}
+.admin-login__submit,.admin-login__back{width:100%;min-height:50px;text-align:center;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.admin-login__back{grid-column:1}.admin-login__submit{grid-column:2}.admin-back-btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.admin-login input:focus,.admin-toolbar input:focus,.admin-toolbar select:focus,.order-card select:focus{outline:none;border-color:var(--gold)}
+.admin-btn{border:1px solid transparent;border-radius:10px;padding:11px 16px;font-weight:800;cursor:pointer}
+.admin-btn--gold{background:var(--gold);color:#201a0d}
+.admin-btn--ghost{background:var(--card);border-color:var(--line);color:var(--text)}
+.admin-message{min-height:24px;margin-top:12px;color:var(--muted)}
+.admin-message.is-error{color:var(--danger)}
+.admin-message.is-success{color:var(--success)}
+.admin-title-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.admin-summary{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.admin-summary span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}
+.admin-toolbar{display:grid;grid-template-columns:1fr;gap:10px;margin:26px 0 14px}
+.orders-list{display:grid;gap:12px}
+.order-card{display:grid;grid-template-columns:minmax(130px,.75fr) minmax(220px,1.15fr) minmax(220px,1.2fr);gap:16px;align-items:center;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.order-card__code{font-weight:900;color:var(--gold)}
+.order-card__date{display:block;margin-top:5px;color:#818995;font-size:11px}
+.order-card h3{font-family:inherit;font-size:16px;margin:0}
+.order-card p{font-size:12px;margin:3px 0;word-break:break-word}
+.order-card__details{display:grid;gap:3px}
+.order-card__details span{font-size:12px;color:var(--muted)}
+.order-card__action{display:grid;gap:7px}
+.order-card__action button{width:100%;background:var(--gold);color:#201a0d;border:0;border-radius:9px;padding:10px;font-weight:800;cursor:pointer}
+.empty-state{padding:36px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+@media(max-width:900px){.order-card{grid-template-columns:1fr 1fr}.order-card__action{min-width:0}}
+@media(max-width:620px){.admin-main{padding-top:30px}.admin-login{padding:22px 17px}.admin-login__form,.admin-toolbar,.order-card{grid-template-columns:1fr}.admin-login__actions-row{grid-template-columns:1fr 1fr;gap:10px}.admin-login__back,.admin-login__submit{min-height:48px;padding:10px 8px;font-size:13px}.admin-title-row{align-items:flex-start;flex-direction:column}.admin-summary{justify-content:flex-start}.admin-header__actions .admin-btn{padding:9px 10px}}
+.admin-save-btn{width:100%;background:var(--gold);color:#201a0d;border:0;border-radius:9px;padding:10px;font-weight:800;cursor:pointer}
+
+
+/* Jonli admin bildirishnomalari */
+.admin-live-row{display:flex;align-items:center;gap:9px;margin:10px 0 16px;padding:11px 13px;border:1px solid rgba(87,212,154,.25);border-radius:12px;background:rgba(87,212,154,.07);color:var(--muted);font-size:13px}
+.admin-live-row strong{color:var(--text)}
+.admin-live-dot{width:10px;height:10px;border-radius:50%;background:#57d49a;box-shadow:0 0 0 5px rgba(87,212,154,.10);animation:adminLivePulse 1.8s ease-in-out infinite}
+@keyframes adminLivePulse{0%,100%{transform:scale(.88);opacity:.65}50%{transform:scale(1.12);opacity:1}}
+.admin-toast-stack{position:fixed;top:86px;right:20px;z-index:9999;display:grid;gap:10px;width:min(390px,calc(100vw - 28px));pointer-events:none}
+.admin-toast{pointer-events:auto;padding:15px 16px;border:1px solid rgba(223,189,104,.48);border-left:4px solid var(--gold);border-radius:14px;background:rgba(15,19,24,.98);box-shadow:0 20px 60px rgba(0,0,0,.46);animation:adminToastIn .32s ease both}
+.admin-toast__top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.admin-toast__top strong{color:var(--gold);font-size:14px}
+.admin-toast__top button{border:0;background:transparent;color:var(--muted);font-size:22px;line-height:1;cursor:pointer}
+.admin-toast p{margin:3px 0;color:var(--text);font-size:13px;line-height:1.45}
+.admin-toast small{display:block;margin-top:7px;color:var(--muted)}
+.admin-toast.is-leaving{animation:adminToastOut .25s ease forwards}
+@keyframes adminToastIn{from{opacity:0;transform:translateY(-10px) translateX(18px)}to{opacity:1;transform:none}}
+@keyframes adminToastOut{to{opacity:0;transform:translateX(25px)}}
+#notificationBtn.is-on{border-color:rgba(87,212,154,.45);color:#7ce0ad;background:rgba(87,212,154,.08)}
+@media(max-width:620px){.admin-header__actions{flex-wrap:wrap;justify-content:flex-end}.admin-header__actions .admin-btn{font-size:11px}.admin-toast-stack{top:118px;right:14px}.admin-live-row{align-items:flex-start;flex-wrap:wrap}}
+
+@media(max-width:620px){.admin-login__form{grid-template-columns:1fr}.admin-header__inner{padding-block:12px}.admin-header__actions{width:auto}.admin-header__actions .admin-btn{flex:1 1 auto;text-align:center}}
+
+@media(max-width:620px){.admin-session-actions{display:flex;gap:6px;flex-wrap:wrap;width:100%}}
+
+/* ============================================================
+   FULL PRO ADMIN — premium, clean and responsive
+   ============================================================ */
+.admin-page{
+  --card:var(--panel);
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 85% 0,rgba(var(--accent-rgb),.1),transparent 28rem),
+    radial-gradient(circle at 0 70%,rgba(75,110,170,.055),transparent 28rem),
+    #090a0c;
+}
+.admin-page::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:42px 42px}
+.admin-header{background:rgba(9,11,14,.82);backdrop-filter:blur(20px) saturate(135%);box-shadow:0 14px 50px rgba(0,0,0,.24)}
+.admin-header__inner,.admin-main{position:relative;z-index:1}
+.admin-login{max-width:660px;margin:6vh auto 0;padding:38px;border-color:rgba(var(--accent-rgb),.2);border-radius:24px;background:linear-gradient(150deg,rgba(28,32,38,.97),rgba(12,15,19,.98));box-shadow:0 35px 100px rgba(0,0,0,.48),0 0 42px rgba(var(--accent-rgb),.045)}
+.admin-login::before{content:'';display:block;width:46px;height:4px;margin-bottom:18px;border-radius:999px;background:var(--gold);box-shadow:0 0 22px rgba(var(--accent-rgb),.42)}
+.admin-login h1,.admin-title-row h1{text-wrap:balance}
+.admin-login input,.admin-toolbar input{min-height:50px;background:rgba(7,9,12,.78);border-color:rgba(255,255,255,.12);transition:.22s}
+.admin-login input:focus,.admin-toolbar input:focus{box-shadow:0 0 0 4px rgba(var(--accent-rgb),.09)}
+.admin-password-toggle{border-color:rgba(var(--accent-rgb),.3);background:rgba(var(--accent-rgb),.08);color:var(--gold-2)}
+.admin-btn{min-height:44px;transition:transform .22s,border-color .22s,box-shadow .22s}
+.admin-btn:hover{transform:translateY(-2px)}
+.admin-btn--gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 12px 32px rgba(var(--accent-rgb),.16)}
+.admin-btn--ghost{background:rgba(24,28,34,.88);border-color:rgba(255,255,255,.1)}
+.admin-dashboard{position:relative}
+.admin-title-row{padding:24px 26px;border:1px solid rgba(var(--accent-rgb),.14);border-radius:20px;background:linear-gradient(145deg,rgba(28,32,38,.92),rgba(13,16,20,.95));box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.admin-summary span{background:rgba(var(--accent-rgb),.065);border-color:rgba(var(--accent-rgb),.18);color:#dce0e6}
+.admin-toolbar input{border-radius:13px;padding-inline:17px}
+.admin-live-row{border-color:rgba(87,212,154,.3);background:linear-gradient(90deg,rgba(87,212,154,.1),rgba(87,212,154,.035));box-shadow:0 12px 34px rgba(0,0,0,.18)}
+.order-card{position:relative;overflow:hidden;padding:21px;border-color:rgba(255,255,255,.09);border-radius:17px;background:linear-gradient(145deg,rgba(27,31,37,.96),rgba(13,16,20,.98));box-shadow:0 12px 42px rgba(0,0,0,.2);transition:transform .28s,border-color .28s,box-shadow .28s}
+.order-card::after{content:'';position:absolute;right:-45px;top:-45px;width:105px;height:105px;border-radius:50%;background:rgba(var(--accent-rgb),.065);pointer-events:none}
+.order-card:hover{transform:translateY(-4px);border-color:rgba(var(--accent-rgb),.27);box-shadow:0 25px 70px rgba(0,0,0,.34)}
+.order-card__code{font-size:13px;letter-spacing:.06em}
+.order-card h3{font-size:18px}
+.order-card p,.order-card__details span{line-height:1.6}
+.admin-toast{border-color:rgba(var(--accent-rgb),.5);background:linear-gradient(145deg,rgba(22,27,33,.99),rgba(10,13,17,.99));box-shadow:0 28px 80px rgba(0,0,0,.58),0 0 34px rgba(var(--accent-rgb),.09)}
+.admin-toast__top strong{color:var(--gold-2)}
+
+@media(max-width:900px){
+  .admin-container{width:min(100% - 24px,760px)}
+  .admin-session-actions{flex-wrap:wrap;justify-content:flex-end}
+  .order-card{grid-template-columns:1fr 1fr}
+  .order-card__details{grid-column:1/-1;padding-top:12px;border-top:1px solid var(--line)}
+}
+@media(max-width:620px){
+  .admin-header__inner{align-items:flex-start;flex-direction:column;padding-block:12px}
+  .admin-header__actions,.admin-session-actions{width:100%}
+  .admin-session-actions .admin-btn{flex:1 1 30%}
+  .admin-main{padding:28px 0 70px}
+  .admin-login{margin-top:2vh;padding:25px 17px;border-radius:18px}
+  .admin-login__actions-row{grid-template-columns:1fr 1fr}
+  .admin-title-row{padding:20px 17px}
+  .order-card{grid-template-columns:1fr;padding:17px}
+  .order-card__details{grid-column:auto}
+  .admin-toast-stack{top:146px}
+}
+
+/* ============================================================
+   ADMIN LAYOUT FIX — public sidebar qoidalaridan to‘liq ajratildi
+   ============================================================ */
+html:has(body.admin-page){background:#090a0c}
+body.admin-page{
+  padding-left:0!important;
+  width:100%;
+  min-width:0;
+  overflow-x:hidden;
+}
+.admin-page .admin-header{
+  top:10px;
+  margin:10px 12px 0;
+  border:1px solid rgba(var(--accent-rgb),.15);
+  border-radius:18px;
+  overflow:hidden;
+}
+.admin-page .admin-container{
+  width:min(1180px,calc(100% - 32px));
+}
+.admin-page .admin-header__inner{
+  padding-inline:4px;
+}
+.admin-page .admin-main{
+  padding-top:38px;
+}
+.admin-page .logo{
+  margin:0!important;
+  flex:0 0 auto;
+}
+.admin-page .admin-header__actions{
+  min-width:0;
+  margin-left:auto;
+}
+.admin-page .admin-session-actions{
+  justify-content:flex-end;
+}
+.admin-page .admin-login,
+.admin-page .admin-title-row,
+.admin-page .order-card{
+  width:100%;
+  min-width:0;
+}
+.admin-page .admin-login{
+  margin-top:clamp(18px,5vh,58px);
+}
+.admin-page .admin-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  white-space:normal;
+}
+.admin-page .admin-login__back,
+.admin-page .admin-login__submit{
+  line-height:1.25;
+}
+@media(max-width:620px){
+  .admin-page .admin-header{
+    top:7px;
+    margin:7px 7px 0;
+    border-radius:15px;
+  }
+  .admin-page .admin-container{
+    width:min(100% - 20px,1180px);
+  }
+  .admin-page .admin-header__inner{
+    min-height:auto;
+    padding:11px 3px;
+    gap:10px;
+  }
+  .admin-page .admin-header__actions,
+  .admin-page .admin-session-actions{
+    width:100%;
+  }
+  .admin-page .admin-session-actions{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
+  }
+  .admin-page .admin-session-actions .admin-btn{
+    min-width:0;
+    padding:9px 6px;
+    font-size:10.5px;
+  }
+  .admin-page .admin-main{
+    padding-top:22px;
+  }
+  .admin-page .admin-login{
+    margin-top:10px;
+  }
+  .admin-page .admin-toast-stack{
+    top:154px;
+    right:10px;
+    width:calc(100vw - 20px);
+  }
+}
+@media(max-width:360px){
+  .admin-page .admin-login__actions-row{
+    grid-template-columns:1fr;
+  }
+  .admin-page .admin-login__back,
+  .admin-page .admin-login__submit{
+    grid-column:1;
+  }
+  .admin-page .admin-session-actions{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Public mobil header logo qoidasi admin logotipini yashirmasin. */
+@media(max-width:520px){
+  .admin-page .logo{
+    display:inline-flex!important;
+    align-items:center;
+    min-height:32px;
+    font-size:16px!important;
+    letter-spacing:.1em!important;
+  }
+}
+
+
+/* ======================================================================
+   ADMIN RESPONSIVE MASTER — 320px dan katta ekranlargacha
+   ====================================================================== */
+html:has(body.admin-page){min-width:320px;overflow-x:hidden}
+body.admin-page{min-width:320px;max-width:100%;overflow-x:hidden!important}
+.admin-page *{min-width:0}
+.admin-page .admin-container{width:min(1180px,calc(100% - 32px))!important}
+.admin-page .admin-header__inner,.admin-page .admin-title-row,.admin-page .order-card{max-width:100%}
+.admin-page .admin-login h1,.admin-page .admin-title-row h1,.admin-page .admin-live-row,.admin-page .order-card p,.admin-page .order-card span{overflow-wrap:anywhere}
+
+@media(min-width:1500px){
+  .admin-page .admin-container{width:min(1280px,calc(100% - 64px))!important}
+}
+
+@media(max-width:900px){
+  .admin-page .admin-container{width:calc(100% - 24px)!important}
+  .admin-page .admin-main{padding-top:30px!important}
+  .admin-page .order-card{grid-template-columns:1fr 1fr!important}
+  .admin-page .order-card__details,.admin-page .order-card__action{grid-column:1/-1!important}
+  .admin-page .admin-title-row{align-items:flex-start!important}
+}
+
+@media(max-width:700px){
+  .admin-page .admin-header{top:6px!important;margin:6px 6px 0!important}
+  .admin-page .admin-header__inner{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:10px 2px!important}
+  .admin-page .logo{display:inline-flex!important;align-self:flex-start!important;font-size:16px!important}
+  .admin-page .admin-header__actions,.admin-page .admin-session-actions{width:100%!important}
+  .admin-page .admin-session-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  .admin-page .admin-session-actions[hidden]{display:none!important}
+  .admin-page .admin-session-actions .admin-btn{width:100%!important;min-height:42px!important;padding:8px 5px!important;font-size:10px!important;line-height:1.2!important}
+  .admin-page .admin-login{margin-top:10px!important;padding:24px 17px!important;border-radius:18px!important}
+  .admin-page .admin-login h1,.admin-page .admin-title-row h1{font-size:clamp(29px,8vw,42px)!important}
+  .admin-page .admin-login__form{grid-template-columns:1fr!important}
+  .admin-page .admin-login__actions-row{grid-column:1!important;grid-template-columns:1fr 1fr!important;gap:9px!important}
+  .admin-page .admin-title-row{flex-direction:column!important;align-items:flex-start!important;gap:14px!important;padding:20px 16px!important}
+  .admin-page .admin-summary{justify-content:flex-start!important}
+  .admin-page .admin-live-row{align-items:flex-start!important;flex-wrap:wrap!important}
+  .admin-page .order-card{grid-template-columns:1fr!important;padding:17px!important}
+  .admin-page .order-card__details,.admin-page .order-card__action{grid-column:auto!important}
+  .admin-page .admin-toast-stack{top:150px!important;right:8px!important;width:calc(100vw - 16px)!important}
+}
+
+@media(max-width:420px){
+  .admin-page .admin-container{width:calc(100% - 14px)!important}
+  .admin-page .admin-header{margin:5px 5px 0!important;border-radius:13px!important}
+  .admin-page .admin-session-actions{grid-template-columns:1fr 1fr!important}
+  .admin-page .admin-session-actions .admin-btn:last-child{grid-column:1/-1!important}
+  .admin-page .admin-login{padding:20px 13px!important}
+  .admin-page .admin-password-wrap input{padding-right:78px!important}
+  .admin-page .admin-password-toggle{min-width:62px!important;padding-inline:7px!important;font-size:10px!important}
+  .admin-page .admin-login__actions-row{grid-template-columns:1fr!important}
+  .admin-page .admin-login__back,.admin-page .admin-login__submit{grid-column:1!important;width:100%!important}
+  .admin-page .admin-title-row{padding:17px 13px!important}
+  .admin-page .admin-summary span{font-size:10px!important}
+  .admin-page .admin-live-row{padding:10px!important;font-size:11px!important}
+  .admin-page .order-card{padding:14px!important}
+  .admin-page .admin-toast{padding:13px!important}
+}
+
+@media(max-width:340px){
+  .admin-page .admin-session-actions{grid-template-columns:1fr!important}
+  .admin-page .admin-session-actions .admin-btn:last-child{grid-column:auto!important}
+}

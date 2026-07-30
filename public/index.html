@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#dfbd68">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TANIROVKA">
+  <meta name="description" content="Tanirovka, Llumar AIR 80 sonsa zashitka, salon laminatsiya, bron plyonka va ximchistka xizmatlari.">
+  <meta property="og:title" content="TANIROVKA">
+  <meta property="og:description" content="Avtomobil uchun 5 ta asosiy professional xizmat.">
+  <title>TANIROVKA</title>
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/style.css?v=20260730-reorder1">
+  <script src="/script.js?v=20260730-reorder1" defer></script>
+</head>
+<body class="pro-site">
+  <div class="topbar" aria-label="Aksiya">
+    <div class="container topbar__inner">
+      <strong data-i18n="promo.badge">AKSIYA</strong>
+      <span class="topbar__message" data-i18n="promo.text">Tanirovka + ximchistkaga maxsus chegirma</span>
+      <a href="#order" data-i18n="promo.cta">Buyurtma berish</a>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <button class="menu-orb" id="menuBtn" type="button" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="navDrawer">
+        <span class="menu-orb__ring" aria-hidden="true"></span>
+        <span class="menu-orb__lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="menu-orb__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="menu-orb__label" data-i18n="menu.label">MENYU</span>
+      </button>
+
+      <a class="logo" href="#home">TANIROVKA</a>
+
+      <div class="header-actions">
+        <div class="language-switcher" role="group" aria-label="Til tanlash">
+          <button type="button" class="lang-btn is-active" data-lang="uz" aria-pressed="true">UZ</button>
+          <button type="button" class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="palette-btn" id="paletteBtn" type="button" aria-label="Sayt rangini tanlash" aria-expanded="false">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Asosiy menyu" aria-hidden="true">
+    <div class="nav-drawer__head">
+      <div>
+        <span class="nav-drawer__eyebrow">PREMIUM AUTO SERVICE</span>
+        <strong>TANIROVKA</strong>
+      </div>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Menyuni yopish">×</button>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a href="#home">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z"/></svg></span>
+        <b data-i18n="nav.home">Bosh sahifa</b>
+      </a>
+      <a href="#services">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a4.2 4.2 0 0 1-5.3 5.3L5.3 15.7a2.1 2.1 0 1 0 3 3l7.1-7.1a4.2 4.2 0 0 1 5.3-5.3l-3 3"/></svg></span>
+        <b data-i18n="nav.services">Xizmatlar</b>
+      </a>
+      <a href="#prices">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H20v14H6.5A2.5 2.5 0 0 1 4 16.5z"/><path d="M4 8h13v8H4m9-4h.01"/></svg></span>
+        <b data-i18n="nav.prices">Narxlar</b>
+      </a>
+      <a href="#guarantee">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.7 7 10 4.1-1.3 7-5.4 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <b data-i18n="nav.guarantee">Kafolat</b>
+      </a>
+      <a href="#faq">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.6 2.1c-.9.5-1.4 1-1.4 2.1M12 17h.01"/></svg></span>
+        <b data-i18n="nav.faq">Savollar</b>
+      </a>
+      <a href="#contact">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <b data-i18n="nav.contact">Manzil</b>
+      </a>
+      <a href="#order">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4h8l1 2h3v15H4V6h3z"/><path d="M9 11h6m-6 4h6"/></svg></span>
+        <b data-i18n="nav.order">Buyurtma</b>
+      </a>
+      <a class="nav-admin" href="/admin.html">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v2"/></svg></span>
+        <b data-i18n="nav.admin">Admin</b>
+      </a>
+    </nav>
+
+    <div class="drawer-tools">
+      <div class="drawer-tool">
+        <span class="drawer-tool__label" data-i18n="theme.label">Sayt rangi</span>
+        <div class="theme-colors" role="group" aria-label="Rang mavzusi">
+          <button class="theme-dot is-active" type="button" data-theme="gold" aria-label="Oltin rang" style="--dot:#dfbd68"></button>
+          <button class="theme-dot" type="button" data-theme="blue" aria-label="Ko‘k rang" style="--dot:#55a8ff"></button>
+          <button class="theme-dot" type="button" data-theme="green" aria-label="Yashil rang" style="--dot:#57d49a"></button>
+          <button class="theme-dot" type="button" data-theme="red" aria-label="Qizil rang" style="--dot:#ff6969"></button>
+          <button class="theme-dot" type="button" data-theme="violet" aria-label="Binafsha rang" style="--dot:#ad7cff"></button>
+        </div>
+      </div>
+      <a class="drawer-call" data-phone-link href="tel:+998991272437">
+        <span data-i18n="contact.phone">Telefon</span>
+        <strong data-phone-text>+998 99 127 24 37</strong>
+      </a>
+    </div>
+  </aside>
+
+  <div class="palette-popover" id="palettePopover" aria-hidden="true">
+    <span data-i18n="theme.short">Rang</span>
+    <div class="theme-colors theme-colors--compact">
+      <button class="theme-dot is-active" type="button" data-theme="gold" aria-label="Oltin rang" style="--dot:#dfbd68"></button>
+      <button class="theme-dot" type="button" data-theme="blue" aria-label="Ko‘k rang" style="--dot:#55a8ff"></button>
+      <button class="theme-dot" type="button" data-theme="green" aria-label="Yashil rang" style="--dot:#57d49a"></button>
+      <button class="theme-dot" type="button" data-theme="red" aria-label="Qizil rang" style="--dot:#ff6969"></button>
+      <button class="theme-dot" type="button" data-theme="violet" aria-label="Binafsha rang" style="--dot:#ad7cff"></button>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="eyebrow" data-i18n="hero.eyebrow">AVTOMOBIL XIZMATLARI</span>
+          <h1 data-i18n-html="hero.title">Avtomobilingiz uchun <em>5 ta asosiy xizmat</em></h1>
+          <p data-i18n="hero.text">Tanirovka, sonsa zashitka, salon laminatsiya, bron plyonka va ximchistka. Narxni avtomobil holatiga qarab kelishamiz va imkon qadar qulay narx beramiz.</p>
+          <div class="hero__trust" aria-label="Xizmat afzalliklari">
+            <span data-i18n="hero.trust1">Sifatli material</span>
+            <span data-i18n="hero.trust2">Tezkor xizmat</span>
+            <span data-i18n="hero.trust3">Kelishilgan narx</span>
+          </div>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#services" data-i18n="hero.servicesCta">Xizmatlarni ko‘rish</a>
+            <a class="btn btn--outline" href="#order" data-i18n="hero.orderCta">Buyurtma berish</a>
+          </div>
+        </div>
+        <div class="hero__summary" aria-label="Asosiy xizmatlar">
+          <button class="hero__summary-item" type="button" data-order-jump="tint" data-i18n="summary.tint">01 — Tanirovka</button>
+          <button class="hero__summary-item" type="button" data-order-jump="sun" data-i18n="summary.sun">02 — Sonsa zashitka</button>
+          <button class="hero__summary-item" type="button" data-order-jump="lam" data-i18n="summary.lam">03 — Salon laminatsiya</button>
+          <button class="hero__summary-item" type="button" data-order-jump="ppf" data-i18n="summary.ppf">04 — Bron plyonka</button>
+          <button class="hero__summary-item" type="button" data-order-jump="clean" data-i18n="summary.clean">05 — Ximchistka</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="services.eyebrow">ASOSIY XIZMATLAR</span>
+          <h2 data-i18n="services.title">Bizda quyidagi xizmatlar bor</h2>
+          <p data-i18n="services.text">Har bir xizmat haqida aniq va tushunarli ma’lumot.</p>
+        </div>
+
+        <div class="service-list">
+          <article class="service service--wide">
+            <div class="service__number">01</div>
+            <div class="service__body">
+              <div class="service__top">
+                <h3 data-i18n="service.tint.name">Tanirovka</h3>
+                <span class="time" data-i18n="time.1to2">1–2 soat</span>
+              </div>
+              <p data-i18n="service.tint.text">Avtomobil oynalariga professional tanirovka o‘rnatamiz. Narxi avtomobil turi va tanlangan plyonkaga qarab kelishiladi.</p>
+              <h4 data-i18n="service.tint.types">Tanirovka turlari:</h4>
+              <div class="tags">
+                <span>Armalan</span><span>Americanskiy</span><span>Nano Ceramic</span><span>Koreyskiy</span><span>Dubayskiy</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="service">
+            <div class="service__number">02</div>
+            <div class="service__body">
+              <div class="service__top">
+                <h3 data-i18n="service.sun.name">Sonsa zashitka</h3>
+                <span class="time" data-i18n="time.1to2">1–2 soat</span>
+              </div>
+              <div class="product-name">Llumar AIR 80</div>
+              <p data-i18n-html="service.sun.text">Llumar AIR 80 sonsa zashitkasi avtomobilga o‘rnatilganda quyosh va issiqlikdan taxminan <strong>96–97%</strong> himoya qiladi. Oynani keskin qoraytirmaydi.</p>
+              <div class="price-note" data-i18n="price.carDependent">Narxi avtomobilga qarab kelishiladi.</div>
+            </div>
+          </article>
+
+          <article class="service">
+            <div class="service__number">03</div>
+            <div class="service__body">
+              <div class="service__top">
+                <h3 data-i18n="service.lam.name">Salon laminatsiya</h3>
+                <span class="time" data-i18n="time.3to6">3–6 soat</span>
+              </div>
+              <div class="option-grid">
+                <div class="option-box"><strong>400 000 so‘m</strong><span data-i18n="service.lam.400">Joyida qilinadi. Salon detallari yechilmaydi.</span></div>
+                <div class="option-box option-box--gold"><strong>800 000 so‘m</strong><span data-i18n="service.lam.800">Detallari yechib olinib, alohida ishlanadi.</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service">
+            <div class="service__number">04</div>
+            <div class="service__body">
+              <div class="service__top">
+                <h3 data-i18n="service.ppf.name">Bron plyonka</h3>
+                <span class="time" data-i18n="time.byPart">Qismiga qarab</span>
+              </div>
+              <p data-i18n="service.ppf.text">Bron plyonka avtomobilning qaysi joylariga qilinishiga qarab narxni kelishamiz va sizga qulay, arzon narx beramiz.</p>
+              <div class="tags tags--small">
+                <span data-i18n="part.hood">Kapot</span><span data-i18n="part.bumper">Old bamper</span><span data-i18n="part.lights">Faralar</span><span data-i18n="part.mirrors">Ko‘zgular</span><span data-i18n="part.handles">Eshik tutqichlari</span><span data-i18n="part.full">To‘liq kuzov</span>
+              </div>
+              <div class="price-note" data-i18n="price.negotiable">Narxi — kelishiladi.</div>
+            </div>
+          </article>
+
+          <article class="service">
+            <div class="service__number">05</div>
+            <div class="service__body">
+              <div class="service__top">
+                <h3 data-i18n="service.clean.name">Ximchistka</h3>
+                <span class="time" data-i18n="time.5to8">5–8 soat</span>
+              </div>
+              <p data-i18n="service.clean.text">Avtomobil salonini to‘liq ximchistka qilib, bozorga tayyor holatga keltiramiz. O‘rindiq, pol, shift, eshik ichki qismlari, panel va bagaj tozalanadi.</p>
+              <div class="big-price" data-i18n="service.clean.price">800 000 so‘mdan 100$ gacha</div>
+              <div class="price-note" data-i18n="service.clean.note">Yakuniy narx avtomobilning holati va ifloslanishiga qarab kelishiladi.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section section--soft" id="prices">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="prices.eyebrow">NARX VA VAQT</span>
+          <h2 data-i18n="prices.title">Qisqa narxlar ro‘yxati</h2>
+        </div>
+        <div class="price-table">
+          <div class="price-row"><div><strong data-i18n="service.tint.name">Tanirovka</strong><span>Armalan, Americanskiy, Nano Ceramic, Koreyskiy, Dubayskiy</span></div><div><b data-i18n="price.negotiableShort">Kelishiladi</b><small data-i18n="time.1to2">1–2 soat</small></div></div>
+          <div class="price-row"><div><strong data-i18n="service.sun.name">Sonsa zashitka</strong><span data-i18n="prices.sunDesc">Llumar AIR 80 — 96–97% himoya</span></div><div><b data-i18n="price.negotiableShort">Kelishiladi</b><small data-i18n="time.1to2">1–2 soat</small></div></div>
+          <div class="price-row"><div><strong data-i18n="service.lam.name">Salon laminatsiya</strong><span data-i18n="prices.lamDesc">Joyida / yechib qilinadi</span></div><div><b>400 000 / 800 000</b><small data-i18n="time.3to6">3–6 soat</small></div></div>
+          <div class="price-row"><div><strong data-i18n="service.ppf.name">Bron plyonka</strong><span data-i18n="prices.ppfDesc">Tanlangan qismlarga qarab</span></div><div><b data-i18n="price.negotiableShort">Kelishiladi</b><small data-i18n="time.byPart">Qismiga qarab</small></div></div>
+          <div class="price-row"><div><strong data-i18n="service.clean.name">Ximchistka</strong><span data-i18n="prices.cleanDesc">Bozorga tayyor qilib berish</span></div><div><b>800 000 so‘m – 100$</b><small data-i18n="time.5to8">5–8 soat</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="guarantee">
+      <div class="container guarantee-grid">
+        <div class="section-head section-head--left">
+          <span class="eyebrow" data-i18n="guarantee.eyebrow">KAFOLAT MUDDATI</span>
+          <h2 data-i18n="guarantee.title">Kafolat xizmat va materialga qarab belgilanadi</h2>
+          <p data-i18n="guarantee.text">Aniq kafolat muddati tanlangan material va bajariladigan ishga qarab xizmat boshlanishidan oldin aytiladi.</p>
+        </div>
+        <div class="guarantee-cards">
+          <article><strong>01</strong><h3 data-i18n="guarantee.tintTitle">Tanirovka va Llumar AIR 80</h3><p data-i18n="guarantee.tintText">Kafolat muddati tanlangan plyonka turiga qarab belgilanadi.</p></article>
+          <article><strong>02</strong><h3 data-i18n="guarantee.lamTitle">Salon laminatsiya</h3><p data-i18n="guarantee.lamText">Kafolat tanlangan 400 000 yoki 800 000 so‘mlik xizmat variantiga qarab aytiladi.</p></article>
+          <article><strong>03</strong><h3 data-i18n="guarantee.ppfTitle">Bron plyonka</h3><p data-i18n="guarantee.ppfText">Kafolat plyonka materiali va qoplangan qismlarga qarab belgilanadi.</p></article>
+          <article><strong>04</strong><h3 data-i18n="guarantee.cleanTitle">Ximchistka</h3><p data-i18n="guarantee.cleanText">Ish topshirilishidan oldin salon mijoz bilan birga tekshiriladi.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div class="section-head section-head--left">
+          <span class="eyebrow" data-i18n="faq.eyebrow">KO‘P BERILADIGAN SAVOLLAR</span>
+          <h2 data-i18n="faq.title">Savollarga javob</h2>
+        </div>
+        <div class="accordion">
+          <article class="accordion__item"><button class="accordion__button" type="button"><span data-i18n="faq.q1">Tanirovka qancha vaqtda qilinadi?</span><b>+</b></button><div class="accordion__content"><p data-i18n="faq.a1">Odatda 1–2 soat. Vaqt avtomobil va oynalar soniga qarab o‘zgarishi mumkin.</p></div></article>
+          <article class="accordion__item"><button class="accordion__button" type="button"><span data-i18n="faq.q2">Qaysi tanirovka turini tanlash kerak?</span><b>+</b></button><div class="accordion__content"><p data-i18n="faq.a2">Budjet va kerakli himoya darajasiga qarab Armalan, Americanskiy, Nano Ceramic, Koreyskiy yoki Dubayskiy tanlanadi.</p></div></article>
+          <article class="accordion__item"><button class="accordion__button" type="button"><span data-i18n="faq.q3">Llumar AIR 80 oynani qoraytiradimi?</span><b>+</b></button><div class="accordion__content"><p data-i18n="faq.a3">Oynani keskin qoraytirmaydi. Asosiy vazifasi quyosh va issiqlikdan 96–97% gacha himoya qilishdir.</p></div></article>
+          <article class="accordion__item"><button class="accordion__button" type="button"><span data-i18n="faq.q4">400 ming va 800 ming laminatsiya farqi nima?</span><b>+</b></button><div class="accordion__content"><p data-i18n="faq.a4">400 000 so‘mlik xizmat joyida qilinadi. 800 000 so‘mlik xizmatda detallar yechib olinib, alohida ishlanadi.</p></div></article>
+          <article class="accordion__item"><button class="accordion__button" type="button"><span data-i18n="faq.q5">Bron plyonka narxi qanday aniqlanadi?</span><b>+</b></button><div class="accordion__content"><p data-i18n="faq.a5">Narx qoplanadigan qismlar, avtomobil turi va tanlangan materialga qarab kelishiladi.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="contact.eyebrow">ANIQ MANZIL VA XARITA</span>
+          <h2 data-i18n="contact.title">Bizni xaritadan toping</h2>
+          <p data-i18n="contact.text">Telefon orqali bog‘laning yoki quyidagi xarita orqali manzilimizni oching.</p>
+        </div>
+        <div class="location-grid">
+          <div class="contact-card">
+            <a data-phone-link href="tel:+998991272437" aria-label="Telefon: +998 99 127 24 37">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/></svg></span>
+              <strong data-phone-text>+998 99 127 24 37</strong>
+            </a>
+            <a href="https://t.me/sh0xxa_127" target="_blank" rel="noopener" aria-label="Telegram: @sh0xxa_127">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span>
+              <strong>@sh0xxa_127</strong>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram: @instagram_username">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" class="icon-dot"/></svg></span>
+              <strong>@instagram_username</strong>
+            </a>
+            <div aria-label="Aniq manzil: 41.053687, 68.989438">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <strong>41.053687, 68.989438</strong>
+            </div>
+            <div aria-label="Ish vaqti: Har kuni 09:00 dan 20:00 gacha">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+              <strong data-i18n="contact.hoursValue">Har kuni: 09:00–20:00</strong>
+            </div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=41.053687%2C68.989438" target="_blank" rel="noopener" aria-label="Google Maps xaritasida ochish">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15M15 6v15"/></svg></span>
+              <strong>Google Maps →</strong>
+            </a>
+          </div>
+          <div class="map-wrap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6017.400197703853!2d68.989438!3d41.053687!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDAzJzEzLjMiTiA2OMKwNTknMjIuMCJF!5e0!3m2!1sru!2s!4v1785247148026!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="TANIROVKA location"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="order">
+      <div class="container order-grid">
+        <div class="section-head section-head--left">
+          <span class="eyebrow" data-i18n="order.eyebrow">BUYURTMA</span>
+          <h2 data-i18n="order.title">Buyurtma qoldiring</h2>
+          <p data-i18n="order.text">Ma’lumotlarni yuboring. Administrator buyurtmani ko‘rib siz bilan bog‘lanadi.</p>
+          <div class="order-help">
+            <strong data-i18n="order.phoneHelp">Telefon orqali ham buyurtma berish mumkin:</strong>
+            <a data-phone-link href="tel:+998991272437"><span data-phone-text>+998 99 127 24 37</span></a>
+          </div>
+          <div class="order-contact-list" aria-label="Aloqa tarmoqlari">
+            <a href="https://t.me/sh0xxa_127" target="_blank" rel="noopener">
+              <span data-i18n="contact.telegram">Telegram</span><strong>@sh0xxa_127</strong>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+              <span data-i18n="contact.instagram">Instagram</span><strong>@instagram_username</strong>
+            </a>
+          </div>
+        </div>
+
+        <form class="order-form" id="orderForm" novalidate>
+          <div class="form-intro">
+            <span class="eyebrow" data-i18n="order.formEyebrow">BUYURTMA MA’LUMOTLARI</span>
+            <h3 data-i18n="order.formTitle">Formani to‘ldiring — biz sizga qo‘ng‘iroq qilamiz</h3>
+            <p data-i18n="order.formText">Ma’lumotlar administratorga tushadi. Narx va kelish vaqtini telefon orqali aniqlashtiramiz.</p>
+            <div class="form-steps">
+              <span data-i18n="order.step1">1. Ma’lumot kiriting</span>
+              <span data-i18n="order.step2">2. Buyurtmani yuboring</span>
+              <span data-i18n="order.step3">3. Qo‘ng‘iroqni kuting</span>
+            </div>
+          </div>
+          <div class="field-row">
+            <label class="field"><span data-i18n="form.name">Ismingiz *</span><input id="orderName" type="text" maxlength="80" autocomplete="name" data-i18n-placeholder="form.namePlaceholder" placeholder="Ismingiz" required></label>
+            <label class="field"><span data-i18n="form.phone">Telefon raqami *</span><input id="orderPhone" type="tel" inputmode="numeric" maxlength="17" autocomplete="tel" value="+998 " placeholder="+998 99 127 24 37" aria-describedby="phoneHint" required><small id="phoneHint" class="field-hint" data-i18n="form.phoneHint">Masalan: +998 90 123 45 67</small></label>
+          </div>
+          <div class="field-row">
+            <label class="field"><span data-i18n="form.brand">Avtomobil markasi *</span><input id="orderBrand" type="text" maxlength="60" data-i18n-placeholder="form.brandPlaceholder" placeholder="Masalan: Chevrolet" required></label>
+            <label class="field"><span data-i18n="form.model">Avtomobil modeli</span><input id="orderModel" type="text" maxlength="80" data-i18n-placeholder="form.modelPlaceholder" placeholder="Masalan: Cobalt"></label>
+          </div>
+          <label class="field field--single"><span data-i18n="form.service">Xizmat turi *</span>
+            <select id="orderService" required>
+              <option value="" data-i18n="form.selectService">Xizmatni tanlang</option>
+              <option value="tint" data-i18n="service.tint.name">Tanirovka</option>
+              <option value="sun" data-i18n="form.sunOption">Sonsa zashitka — Llumar AIR 80</option>
+              <option value="lam" data-i18n="service.lam.name">Salon laminatsiya</option>
+              <option value="ppf" data-i18n="service.ppf.name">Bron plyonka</option>
+              <option value="clean" data-i18n="service.clean.name">Ximchistka</option>
+            </select>
+          </label>
+          <div class="conditional" id="tintOptions" hidden>
+            <label class="field field--single"><span data-i18n="form.tintType">Tanirovka turi</span><select id="orderTintType"><option value="" data-i18n="form.selectType">Turini tanlang</option><option>Armalan</option><option>Americanskiy</option><option>Nano Ceramic</option><option>Koreyskiy</option><option>Dubayskiy</option></select></label>
+          </div>
+          <div class="conditional" id="lamOptions" hidden>
+            <label class="field field--single"><span data-i18n="form.lamType">Laminatsiya turi</span><select id="orderServiceOption"><option value="" data-i18n="form.selectType">Turini tanlang</option><option value="400 000 so‘m — joyida qilinadi" data-i18n="form.lam400">400 000 so‘m — joyida qilinadi</option><option value="800 000 so‘m — detallar yechib qilinadi" data-i18n="form.lam800">800 000 so‘m — detallar yechib qilinadi</option></select></label>
+          </div>
+          <fieldset class="conditional parts" id="ppfOptions" hidden>
+            <legend data-i18n="form.ppfParts">Bron plyonka qilinadigan qismlar</legend>
+            <label><input type="checkbox" value="Kapot"><span data-i18n="part.hood">Kapot</span></label>
+            <label><input type="checkbox" value="Old bamper"><span data-i18n="part.bumper">Old bamper</span></label>
+            <label><input type="checkbox" value="Faralar"><span data-i18n="part.lights">Faralar</span></label>
+            <label><input type="checkbox" value="Ko‘zgular"><span data-i18n="part.mirrors">Ko‘zgular</span></label>
+            <label><input type="checkbox" value="Eshik tutqichlari"><span data-i18n="part.handles">Eshik tutqichlari</span></label>
+            <label><input type="checkbox" value="To‘liq kuzov"><span data-i18n="part.full">To‘liq kuzov</span></label>
+          </fieldset>
+          <label class="field field--single"><span data-i18n="form.comment">Qo‘shimcha izoh</span><textarea id="orderComment" maxlength="1000" rows="5" wrap="soft" data-i18n-placeholder="form.commentPlaceholder" placeholder="Avtomobil holati yoki boshqa ma’lumot"></textarea></label>
+          <button class="btn btn--primary btn--full order-submit" id="orderSubmit" type="submit" data-i18n="order.submit">
+            Buyurtmani yuborish
+          </button>
+          <div class="form-status" id="orderMessage" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="#home">TANIROVKA</a>
+      <p data-i18n="footer.text">Professional avtomobil xizmatlari.</p>
+      <span>© <span id="year"></span> TANIROVKA</span>
+    </div>
+  </footer>
+
+  <button class="pwa-install" id="installAppBtn" type="button" aria-haspopup="dialog">
+    <span class="pwa-install__icon" aria-hidden="true">↓</span>
+    <span data-i18n="pwa.install">Telefonga o‘rnatish</span>
+  </button>
+
+  <div class="pwa-modal" id="pwaModal" aria-hidden="true">
+    <div class="pwa-modal__backdrop" data-pwa-close></div>
+    <section class="pwa-modal__card" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle">
+      <button class="pwa-modal__close" type="button" data-pwa-close aria-label="Yopish">×</button>
+      <img src="/assets/icons/icon-192.png" alt="" width="76" height="76">
+      <span class="eyebrow" data-i18n="pwa.eyebrow">MOBIL ILOVA</span>
+      <h2 id="pwaModalTitle" data-i18n="pwa.title">TANIROVKA’ni telefon ekraniga qo‘shing</h2>
+      <p id="pwaModalText" data-i18n="pwa.androidHelp">Chrome menyusidan “Ilovani o‘rnatish” yoki “Bosh ekranga qo‘shish”ni tanlang.</p>
+      <button class="btn btn--primary btn--full" id="pwaModalAction" type="button" data-i18n="pwa.tryInstall">O‘rnatishni ochish</button>
+      <small data-i18n="pwa.secureHint">O‘rnatish uchun sayt HTTPS manzilda ochilgan bo‘lishi kerak.</small>
+    </section>
+  </div>
+
+  <div class="mobile-actions" aria-label="Tezkor aloqa">
+    <a class="mobile-call" data-phone-link href="tel:+998991272437" data-i18n="mobile.call">Hozir qo‘ng‘iroq qilish</a>
+    <a href="#order" data-i18n="mobile.order">Buyurtma</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>TANIROVKA — Admin</title>
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=20260730-responsive320">
+  <link rel="stylesheet" href="/admin.css?v=20260730-responsive320">
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-container admin-header__inner">
+      <a class="logo" href="/">TANIROVKA</a>
+      <div class="admin-header__actions">
+        <div class="admin-session-actions" id="adminSessionActions" hidden>
+          <button class="admin-btn admin-btn--ghost" id="notificationBtn" type="button">Bildirishnomani yoqish</button>
+          <button class="admin-btn admin-btn--ghost" id="refreshBtn" type="button">Yangilash</button>
+          <button class="admin-btn admin-btn--ghost" id="logoutBtn" type="button">Chiqish</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container admin-main">
+    <section class="admin-login" id="loginPanel">
+      <span class="label">Admin panel</span>
+      <h1>Buyurtmalarni boshqarish</h1>
+      <p>Admin login va parolingizni kiriting.</p>
+      <form id="loginForm" class="admin-login__form">
+        <label class="admin-login__field">
+          <span>Login</span>
+          <input id="adminUsername" type="text" value="admin" autocomplete="username" placeholder="Login" required>
+        </label>
+        <label class="admin-login__field">
+          <span>Parol</span>
+          <span class="admin-password-wrap">
+            <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Parol" required>
+            <button class="admin-password-toggle" id="passwordToggle" type="button" aria-label="Parolni ko‘rish" aria-pressed="false">Ko‘rish</button>
+          </span>
+        </label>
+        <div class="admin-login__actions-row">
+          <a class="admin-btn admin-btn--ghost admin-login__back" href="/">← Orqaga qaytish</a>
+          <button class="admin-btn admin-btn--gold admin-login__submit" type="submit">Kirish</button>
+        </div>
+      </form>
+      <div class="admin-message" id="loginMessage" role="status"></div>
+    </section>
+
+    <section class="admin-dashboard" id="dashboard" hidden>
+      <div class="admin-title-row">
+        <div>
+          <span class="label">Backend</span>
+          <h1>Buyurtmalar</h1>
+        </div>
+        <div class="admin-summary" id="summary"></div>
+      </div>
+      <div class="admin-toolbar">
+        <input id="searchInput" type="search" placeholder="Kod, ism yoki telefon orqali qidiring">
+      </div>
+      <div class="admin-live-row">
+        <span class="admin-live-dot" aria-hidden="true"></span>
+        <strong>Jonli xabarlar</strong>
+        <span id="liveStatus">Admin ochiq turganda yangi buyurtmalar avtomatik keladi.</span>
+      </div>
+      <div class="admin-message" id="dashboardMessage" role="status"></div>
+      <div class="orders-list" id="ordersList"></div>
+    </section>
+  </main>
+  <div class="admin-toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+  <script src="/admin.js?v=20260730-responsive320" defer></script>
+</body>
+</html>
