@@ -390,12 +390,23 @@ function initCustomSelects(root = document) {
       wrapper.classList.toggle('is-open', opening);
       trigger.setAttribute('aria-expanded', String(opening));
       if (opening) {
-        const rect = trigger.getBoundingClientRect();
-        const menuHeight = Math.min(menu.scrollHeight || 300, window.innerHeight * .46);
-        const spaceBelow = window.innerHeight - rect.bottom;
-        wrapper.classList.toggle('opens-up', spaceBelow < menuHeight + 18 && rect.top > spaceBelow);
+        const mobileFlowSelect = window.matchMedia('(max-width: 767px)').matches;
+        if (mobileFlowSelect) {
+          wrapper.classList.remove('opens-up');
+        } else {
+          const rect = trigger.getBoundingClientRect();
+          const menuHeight = Math.min(menu.scrollHeight || 300, window.innerHeight * .46);
+          const spaceBelow = window.innerHeight - rect.bottom;
+          wrapper.classList.toggle('opens-up', spaceBelow < menuHeight + 18 && rect.top > spaceBelow);
+        }
         const selectedItem = menu.querySelector('.is-selected:not(.is-placeholder)') || menu.querySelector('.custom-select__option');
-        selectedItem?.scrollIntoView({ block: 'nearest' });
+        if (selectedItem) {
+          if (mobileFlowSelect) {
+            menu.scrollTop = Math.max(0, selectedItem.offsetTop - (menu.clientHeight / 2));
+          } else {
+            selectedItem.scrollIntoView({ block: 'nearest' });
+          }
+        }
       } else {
         wrapper.classList.remove('opens-up');
       }
